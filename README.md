@@ -1,17 +1,17 @@
-## Airbrake.io notifier for Play 2.0
+## Airbrake.io notifier for Play 2.4
+Automatically inform airbrake about failing requests and exceptions in your 
+play application. This module was originally forked from 
+https://github.com/teamon/play-airbrake
+
+The original author is Tymon Tobolski. Since the original repository is not 
+maintained any more this module gets published using a different organization.
 
 ## Instalation
 
-Add `play-airbrake` to your `project/Build.scala` file
+Add `play-airbrake` to your `build.sbt` or `project/Build.scala` file
 
 ``` scala
-val appDependencies = Seq(
-  "eu.teamon" %% "play-airbrake" % "0.3.0"
-)
-
-val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
-  resolvers += "teamon.eu repo" at "http://repo.teamon.eu"
-)
+libraryDependencies += "com.scalableminds" %% "play-airbrake" % "0.5.0"
 ```
 
 Your `app/Global.scala` should look like this
@@ -32,7 +32,7 @@ object Global extends GlobalSettings {
 
 ```
 
-For javascript notifications
+For javascript notifications (not free plan)
 
 ```scala
 

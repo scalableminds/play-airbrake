@@ -1,10 +1,8 @@
-organization := "eu.teamon"
-
 name := "play-airbrake"
 
-version := "0.4.0-SNAPSHOT"
+version := "0.5.0"
 
-scalaVersion := "2.11.2"
+scalaVersion := "2.11.7"
 
 scalaBinaryVersion := "2.11"
 
@@ -17,16 +15,47 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play" % Option(System.getenv("PLAY_VERSION")).getOrElse("2.3.5") % "compile",
-  "com.typesafe.play" %% "play-ws" % Option(System.getenv("PLAY_VERSION")).getOrElse("2.3.5") % "compile"
+  "com.typesafe.play" %% "play" % "2.4.3" % "compile",
+  "com.typesafe.play" %% "play-ws" % "2.4.3" % "compile"
 )
 
-publishTo <<= version { (version: String) =>
-  val rootDir = "/srv/maven/"
-  val path =
-    if (version.trim.endsWith("SNAPSHOT"))
-      rootDir + "snapshots/" 
-    else 
-      rootDir + "releases/" 
-  Some(Resolver.sftp("scm.io intern repo", "maven.scm.io", 44144, path))
-}
+publishMavenStyle := true
+
+publishArtifact in Test := false
+
+pomIncludeRepository := { _ => false }
+
+organization := "com.scalableminds"
+
+organizationName := "scalable minds UG (haftungsbeschränkt) & Co. KG"
+
+organizationHomepage := Some(url("http://scalableminds.com"))
+
+startYear := Some(2014)
+
+sonatypeProfileName := "com.scalableminds"
+
+description := "Play framework 2.x module to report play exceptions to airbrake"
+
+licenses := Seq("MIT" -> url("https://github.com/scalableminds/play-airbrake/blob/master/LICENSE"))
+
+homepage := Some(url("https://github.com/sclableminds/play-airbrake"))
+
+scmInfo := Some(ScmInfo(url("https://github.com/sclableminds/play-airbrake"), "https://github.com/scalableminds/play-airbrake.git"))
+
+pomExtra := (
+  <developers>
+    <developer>
+      <id>teamon</id>
+      <name>Tymon Tobolski</name>
+      <email>i@teamon.eu</email>
+      <url>http://github.com/teamon</url>
+    </developer>
+    <developer>
+      <id>tmbo</id>
+      <name>Tom Bocklisch</name>
+      <email>tom.bocklisch@scalableminds.com</email>
+      <url>http://github.com/tmbo</url>
+    </developer>
+  </developers>
+)
